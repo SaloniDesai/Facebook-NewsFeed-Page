@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vulcun</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- Bootstrap CSS -->
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="includes/css/bootstrap-glyphicons.css" rel="stylesheet">
+		
+		
+		<!-- Custom CSS -->
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="shortcut icon" type="image/png" href="https://fbstatic-a.akamaihd.net/rsrc.php/yl/r/H3nktOa7ZMg.ico">		
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+         <script src="bootstrap/js/bootstrap.min.js"></script>
+    <style type="text/css">
+            @media only screen and (max-width : 540px) 
+            {
+                .chat-sidebar
+                {
+                    display: none !important;
+                }
+                
+                .chat-popup
+                {
+                    display: none !important;
+                }
+            }
+            .circle
+            {
+                width: 10px;
+                height: 10px;
+                border-radius:100%;
+                background-color: green;
+                display: inline-block;
+            }
+            body
+            {
+                background-color: #e9eaed;
+            }
+            
+            .chat-sidebar
+            {
+                width: 270px;
+                position: fixed;
+                height: 70%;
+                right: 0px;
+                bottom: 0px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                border: 1px solid rgba(29, 49, 91, .3);
+            }
+            
+            .sidebar-name 
+            {
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-bottom: 4px;
+                font-size: 20px;
+            }
+            
+            .sidebar-name span
+            {
+                padding-left: 5px;
+            }
+            
+            .sidebar-name a
+            {
+                display: block;
+                height: 100%;
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            .sidebar-name:hover
+            {
+                background-color:#e1e2e5;
+            }
+            
+            .sidebar-name img
+            {
+                width: 32px;
+                height: 32px;
+                vertical-align:middle;
+            }
+            
+            .popup-box
+            {
+                display: none;
+                position: fixed;
+                bottom: 0px;
+                right: 220px;
+                height: 285px;
+                background-color: rgb(237, 239, 244);
+                width: 300px;
+                border: 1px solid rgba(29, 49, 91, .3);
+            }
+            
+            .popup-box .popup-head
+            {
+                background-color: #6d84b4;
+                padding: 5px;
+                color: white;
+                font-weight: bold;
+                font-size: 14px;
+                clear: both;
+            }
+            
+            .popup-box .popup-head .popup-head-left
+            {
+                float: left;
+            }
+            
+            .popup-box .popup-head .popup-head-right
+            {
+                float: right;
+                opacity: 0.5;
+            }
+            
+            .popup-box .popup-head .popup-head-right a
+            {
+                text-decoration: none;
+                color: inherit;
+            }
+            
+            .popup-box .popup-messages
+            {
+                height: 100%;
+                overflow-y: scroll;
+            }
+            .hi
+            {
+                position: relative;left: -220px;
+                width: 494px;
+                padding: 5px;
+                background-color: white;
+                border:solid;
+                border-width: thin;
+                margin-bottom: 20px;
+
+            }
+            #delete, #comment
+            {
+                float: right;
+            }
+            
+
+
+        </style>
+
+		
+                <script type="text/javascript" src="chat.js"></script>
+                <script>
+                var hello = function()
+                {
+                    var post=$.trim($("#status_message").val());
+                                
+                        if(post.length != 0)
+                        { 
+                            var content= $('<div class="hi">');
+                            content.text(post);
+                            content.append($('<input/>').attr({
+                             type: "button",
+                             id: "delete",
+                             value:"Delete"}));
+                            content.append($('<input/>').attr({
+                             type: "button",
+                             id: "comment",
+                             value:"Comment"}));
+                            content.prependTo('.posts');
+                        $("#status_message").val("");
+                        
+
+
+                    $("#delete").click(function()
+                        {
+                            $(this).parent("div").remove();
+                        });
+                        
+
+                        $("#comment").click(function()
+                            {
+                                    
+                                    var table = $(this).closest('div');
+                                    
+                                    table.append('<br/><input type="text" id="current Name" value="" style="width:400px; padding-top:5px; margin-top:8px"/>');
+                            
+
+    
+
+                             });
+
+                            
+                            
+                    }
+
+                    
+                }
+                
+            
+
+                    
+                
+
+            
+                        
+
+                
+                       
+                </script>
+                
+        
+
+</head>
+<body>
+
+	<div class="container-fluid"id="navbar">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				
+					<a class="navbar-brand" href="vulcun.html" >
+						<img src="facebook.png" alt="brand" width="35px" height="35px"></a>
+							<div class="col-lg-6">
+							<form class="navbar-form" role="search" action="/search" method="get">
+									<div class="input-group" id="search">
+										<input id="search-facebook" type="text" placeholder="Search Facebook">
+										
+											<button class="btn btn-default" type="button" id="search-btn"><i class="glyphicon glyphicon-search" style="color:black"></i></button>
+										
+									</div>
+							</form>
+							</div>
+							<ul class="nav navbar-nav" style="float:center; color:white">
+								<li><a href="#">Saloni</a></li>
+								<li><a href="vulcun.html">Home</a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-user" style="color:white"></span></a></li>
+								<li><a href="#"><span class="glyphicon glyphicon-globe" style="color:white"></span></a></li>
+                                
+                                <li class="dropdown">
+                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="background-color=transparent"> <b class="caret"></b></a>
+                                
+                                    <ul class="dropdown-menu">
+                                        <li ><a href="#Dashboard">Create Group</a></li>
+                                        <li ><a href="#Profile" >New Groups</a></li>
+                                        <li class="divider"></li>
+                                        <li ><a href="#settings">Create Page</a></li>
+                                        <li ><a href="#feedback">Create Feedbacks</a></li>
+                                        <li class="divider"></li>
+                                        <li ><a href="#feedback">New Ads</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Activity Log</li>
+                                        <li><a href="#">Setting</li>
+                                        <li><a href="#">LogOut</li>
+
+                                    </ul>
+                                
+                                </li>
+							</ul>
+						
+			</div><!--container-->
+
+		</nav>
+		</div><!--navbar-->
+        <br/><br/>
+
+<div class="container" id="extra">
+    <div class="row">
+    <div class="col-lg-3">
+    <a href="vulcun.html">Newsfeed</a><br/>
+    <a href="">Messages</a><br/>
+    <a href="Events">Events</a><br/><br/>
+    <h5>APPS</h5><br/>
+    <a href="#">Games</a><br/>
+    <a href="#">@Hearts</a><br/>
+    <a href="#">Texas Holdem Poker</a><br/>
+    <a href="#">AYI</a><br/>
+    <a href="#">Birthday cards</a><br/>
+ </div>
+<div class="container" id="parent">  
+	<div class id="share">  
+    <div id="updateBox">
+        <form action="#" method="post" role="form" enctype="multipart/form-data" class="facebook-share-box">
+            <ul class="post-types">
+                <li class="post-type">
+                    <a class="status" title="" href="#"><span class="glyphicon glyphicon-file"></span> Share an Update</a>
+                </li>
+                <li class="post-type">
+                    <a class="photos" href="#"><span class="glyphicon glyphicon-camera"></span> Add photos</a>
+                </li>
+            </ul>
+            
+            <div class="panel panel-default">
+	                <div class="panel-heading"><i class="fa fa-file"></i>Update Status
+	                </div>
+                    <div class="panel-body">
+                        <div class="">
+                            <textarea name="message" cols="40" rows="10" id="status_message" class="form-control message" style="height: 62px; overflow: hidden;" placeholder="What's on your mind ?"></textarea> 
+                        </div>
+                    </div>
+                     <div class="panel-footer">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <div class="btn-group">
+                                              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-map-marker"></span></button>
+                                              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-camera"></span> </button>
+                                              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <select name="privacy" class="form-control privacy-dropdown pull-left input-sm">
+                                                <option value="1" selected="selected">Public</option>
+                                                <option value="2">Only my friends</option>
+                                                <option value="3">Only me</option>
+                                            </select>                                    
+                                            <input type="button" id="post" name="submit" value="Post" class="btn btn-primary" onclick="hello()">  
+                                            <div class="counter"></div>                             
+                                        </div>
+                                    </div>
+                                </div>
+                        </div><!--panel-footer-->
+
+                        
+                    </div><!--panel-->        
+		</form>
+    </div><!--updateBox-->
+    </div><!--share-->
+
+        <ul class="b2"></ul>
+    	
+        <ul class="posts">
+        </ul>
+
+        <div id="Box2">
+            <textarea id="commentBox" cols="58" rows="10" style="height: 62px; overflow: hidden; display:inline; position:relative;left:177px;"></textarea> 
+        </div>
+
+    </div> <!--parent-->
+
+    <div class="right_sidebar">
+        <div class="container">
+            
+            Trending News
+        </div>
+
+    </div><!--right_sidebar-->
+<div class="chat-sidebar">
+            <div class="sidebar-name">
+                <!-- Pass username and display name to register popup -->
+                <a href="javascript:register_popup('saloni', 'Saloni Desai');">
+                    <div class="circle"></div>
+                    <span>Saloni Desai</span>
+                </a>
+            </div>
+            <div class="sidebar-name">
+                <a href="javascript:register_popup('john', 'John Doe');">
+                    <div class="circle"></div>
+                    <span>John Doe</span>
+                </a>
+            </div>
+            <div class="sidebar-name">
+                <a href="javascript:register_popup('Nikhil', 'Nikhil Muralidhar');">
+                    <div class="circle"></div>
+                    <span>Nikhil Muralidhar</span>
+                </a>
+            </div>
+            
+            
+            
+        </div>
+        
+    
+    
+
+	</body>
+</html>
+
+
